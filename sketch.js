@@ -18,6 +18,7 @@ var angulo;     // o angulo do canhao
 // variaveis de imagens
 var backgroundImg;
 var torreImg;
+var boladecanhao;
 
 
 /** Criar as funções **/
@@ -56,7 +57,17 @@ function setup() {
     World.add (mundo,torre);
 
 
-    canhao = new Cannon(180,120,130,100,20);
+    angleMode (DEGREES);
+    angulo = 15;
+    
+    canhao = new Cannon(180,120,130,100,angulo);
+
+    boladecanhao = new Cannonball (canhao.x,canhao.y);
+
+
+
+
+
 
 }
 
@@ -68,14 +79,30 @@ function draw(){
     image(backgroundImg,0,0,1200,600);  //define a imagem de fundo
 
     canhao.display ();
+    boladecanhao.display ();
 
     
     push ();
+     
     imageMode (CENTER);
     image(torreImg,torre.position.x,torre.position.y,160,310);
     pop ();
 
     //rect(chao.position.x,chao.position.y,width*2,1);
+
+
+
+}
+
+function keyReleased () {
+
+
+    if (keyCode === DOWN_ARROW) {
+
+        boladecanhao.shoot ();
+    
+    
+    }
 
 
 
